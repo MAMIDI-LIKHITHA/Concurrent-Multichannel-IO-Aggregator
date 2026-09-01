@@ -1,0 +1,2844 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.68+136 (git sha1 c30457480-dirty, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 15.2.1)
+
+-- Running command `read_verilog data_gen.v channel_fifo.v rr_arbiter.v processor.v uart_tx.v top.v; synth -top top; stat' --
+
+1. Executing Verilog-2005 frontend: data_gen.v
+Parsing Verilog input from `data_gen.v' to AST representation.
+Generating RTLIL representation for module `\data_gen'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: channel_fifo.v
+Parsing Verilog input from `channel_fifo.v' to AST representation.
+Generating RTLIL representation for module `\channel_fifo'.
+Warning: Replacing memory \mem with list of registers. See channel_fifo.v:37
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rr_arbiter.v
+Parsing Verilog input from `rr_arbiter.v' to AST representation.
+Generating RTLIL representation for module `\rr_arbiter'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: processor.v
+Parsing Verilog input from `processor.v' to AST representation.
+Generating RTLIL representation for module `\processor'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: uart_tx.v
+Parsing Verilog input from `uart_tx.v' to AST representation.
+Generating RTLIL representation for module `\uart_tx'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: top.v
+Parsing Verilog input from `top.v' to AST representation.
+Generating RTLIL representation for module `\top'.
+Successfully finished Verilog frontend.
+
+7. Executing SYNTH pass.
+
+7.1. Executing HIERARCHY pass (managing design hierarchy).
+
+7.1.1. Analyzing design hierarchy..
+Top module:  \top
+Used module:     \uart_tx
+Used module:     \processor
+Used module:     \rr_arbiter
+Used module:     \channel_fifo
+Used module:     \data_gen
+Parameter \CLKS_PER_BIT = 434
+
+7.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\uart_tx'.
+Parameter \CLKS_PER_BIT = 434
+Generating RTLIL representation for module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Parameter \SEED = 8'00111110
+
+7.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\data_gen'.
+Parameter \SEED = 8'00111110
+Generating RTLIL representation for module `$paramod\data_gen\SEED=8'00111110'.
+Parameter \SEED = 8'01011100
+
+7.1.4. Executing AST frontend in derive mode using pre-parsed AST for module `\data_gen'.
+Parameter \SEED = 8'01011100
+Generating RTLIL representation for module `$paramod\data_gen\SEED=8'01011100'.
+Parameter \SEED = 8'10100101
+
+7.1.5. Executing AST frontend in derive mode using pre-parsed AST for module `\data_gen'.
+Parameter \SEED = 8'10100101
+Generating RTLIL representation for module `$paramod\data_gen\SEED=8'10100101'.
+
+7.1.6. Analyzing design hierarchy..
+Top module:  \top
+Used module:     $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+Used module:     \processor
+Used module:     \rr_arbiter
+Used module:     \channel_fifo
+Used module:     $paramod\data_gen\SEED=8'00111110
+Used module:     $paramod\data_gen\SEED=8'01011100
+Used module:     $paramod\data_gen\SEED=8'10100101
+
+7.1.7. Analyzing design hierarchy..
+Top module:  \top
+Used module:     $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+Used module:     \processor
+Used module:     \rr_arbiter
+Used module:     \channel_fifo
+Used module:     $paramod\data_gen\SEED=8'00111110
+Used module:     $paramod\data_gen\SEED=8'01011100
+Used module:     $paramod\data_gen\SEED=8'10100101
+Removing unused module `\uart_tx'.
+Removing unused module `\data_gen'.
+Removed 2 unused modules.
+
+7.2. Executing PROC pass (convert processes to netlists).
+
+7.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+7.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$data_gen.v:22$94 in module $paramod\data_gen\SEED=8'00111110.
+Removed 1 dead cases from process $proc$uart_tx.v:36$82 in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Marked 6 switch rules as full_case in process $proc$uart_tx.v:36$82 in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Marked 2 switch rules as full_case in process $proc$data_gen.v:22$108 in module $paramod\data_gen\SEED=8'10100101.
+Marked 1 switch rules as full_case in process $proc$processor.v:21$69 in module processor.
+Removed 1 dead cases from process $proc$rr_arbiter.v:62$41 in module rr_arbiter.
+Marked 5 switch rules as full_case in process $proc$rr_arbiter.v:62$41 in module rr_arbiter.
+Removed 1 dead cases from process $proc$channel_fifo.v:43$24 in module channel_fifo.
+Marked 3 switch rules as full_case in process $proc$channel_fifo.v:43$24 in module channel_fifo.
+Marked 3 switch rules as full_case in process $proc$channel_fifo.v:33$14 in module channel_fifo.
+Marked 2 switch rules as full_case in process $proc$data_gen.v:22$101 in module $paramod\data_gen\SEED=8'01011100.
+Removed a total of 3 dead cases.
+
+7.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 12 redundant assignments.
+Promoted 8 assignments to connections.
+
+7.2.4. Executing PROC_INIT pass (extract init attributes).
+
+7.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+Found async reset \rst in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+Found async reset \rst in `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+Found async reset \rst in `\processor.$proc$processor.v:21$69'.
+Found async reset \rst in `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+Found async reset \rst in `\channel_fifo.$proc$channel_fifo.v:43$24'.
+Found async reset \rst in `\channel_fifo.$proc$channel_fifo.v:33$14'.
+Found async reset \rst in `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+
+7.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~18 debug messages>
+
+7.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+     1/5: $0\delay_cnt[15:0]
+     2/5: $0\valid[0:0]
+     3/5: $0\delay_target[15:0]
+     4/5: $0\lfsr[7:0]
+     5/5: $0\data[7:0]
+Creating decoders for process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+     1/6: $0\tx_line[0:0]
+     2/6: $0\data_reg[7:0]
+     3/6: $0\bit_idx[2:0]
+     4/6: $0\clk_cnt[15:0]
+     5/6: $0\busy[0:0]
+     6/6: $0\state[1:0]
+Creating decoders for process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+     1/5: $0\delay_cnt[15:0]
+     2/5: $0\valid[0:0]
+     3/5: $0\delay_target[15:0]
+     4/5: $0\lfsr[7:0]
+     5/5: $0\data[7:0]
+Creating decoders for process `\processor.$proc$processor.v:21$69'.
+     1/2: $0\out_valid[0:0]
+     2/2: $0\out_packet[9:0]
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+     1/18: $3\next_ptr$func$rr_arbiter.v:91$35.p[1:0]$56
+     2/18: $3\next_ptr$func$rr_arbiter.v:91$35.$result[1:0]$55
+     3/18: $2\next_ptr$func$rr_arbiter.v:91$35.p[1:0]$51
+     4/18: $2\next_ptr$func$rr_arbiter.v:91$35.$result[1:0]$50
+     5/18: $2\next_ptr$func$rr_arbiter.v:102$36.p[1:0]$53
+     6/18: $2\next_ptr$func$rr_arbiter.v:102$36.$result[1:0]$52
+     7/18: $1\next_ptr$func$rr_arbiter.v:102$36.p[1:0]$49
+     8/18: $1\next_ptr$func$rr_arbiter.v:102$36.$result[1:0]$48
+     9/18: $1\next_ptr$func$rr_arbiter.v:91$35.p[1:0]$47
+    10/18: $1\next_ptr$func$rr_arbiter.v:91$35.$result[1:0]$46
+    11/18: $0\out_valid[0:0]
+    12/18: $0\rd_en2[0:0]
+    13/18: $0\rd_en1[0:0]
+    14/18: $0\rd_en0[0:0]
+    15/18: $0\ptr[1:0]
+    16/18: $0\state[0:0]
+    17/18: $0\out_channel[1:0]
+    18/18: $0\out_data[7:0]
+Creating decoders for process `\channel_fifo.$proc$channel_fifo.v:43$24'.
+     1/7: $3$mem2reg_rd$\mem$channel_fifo.v:48$9_DATA[7:0]$33
+     2/7: $2$mem2reg_rd$\mem$channel_fifo.v:48$9_DATA[7:0]$32
+     3/7: $2$mem2reg_rd$\mem$channel_fifo.v:48$9_ADDR[1:0]$31
+     4/7: $1$mem2reg_rd$\mem$channel_fifo.v:48$9_DATA[7:0]$28
+     5/7: $1$mem2reg_rd$\mem$channel_fifo.v:48$9_ADDR[1:0]$27
+     6/7: $0\rd_ptr[2:0]
+     7/7: $0\rd_data[7:0]
+Creating decoders for process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+     1/9: $2$mem2reg_wr$\mem$channel_fifo.v:37$8_ADDR[1:0]$21
+     2/9: $2$mem2reg_wr$\mem$channel_fifo.v:37$8_DATA[7:0]$22
+     3/9: $1$mem2reg_wr$\mem$channel_fifo.v:37$8_DATA[7:0]$18
+     4/9: $1$mem2reg_wr$\mem$channel_fifo.v:37$8_ADDR[1:0]$17
+     5/9: $0\mem[3][7:0]
+     6/9: $0\mem[2][7:0]
+     7/9: $0\mem[1][7:0]
+     8/9: $0\mem[0][7:0]
+     9/9: $0\wr_ptr[2:0]
+Creating decoders for process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+     1/5: $0\delay_cnt[15:0]
+     2/5: $0\valid[0:0]
+     3/5: $0\delay_target[15:0]
+     4/5: $0\lfsr[7:0]
+     5/5: $0\data[7:0]
+
+7.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+7.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod\data_gen\SEED=8'00111110.\data' using process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+  created $adff cell `$procdff$366' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'00111110.\valid' using process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+  created $adff cell `$procdff$369' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'00111110.\lfsr' using process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+  created $adff cell `$procdff$372' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'00111110.\delay_cnt' using process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+  created $adff cell `$procdff$375' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'00111110.\delay_target' using process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+  created $adff cell `$procdff$378' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\state' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$381' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\tx_line' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$384' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\busy' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$387' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\clk_cnt' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$390' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\bit_idx' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$393' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.\data_reg' using process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+  created $adff cell `$procdff$396' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'10100101.\data' using process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+  created $adff cell `$procdff$399' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'10100101.\valid' using process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+  created $adff cell `$procdff$402' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'10100101.\lfsr' using process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+  created $adff cell `$procdff$405' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'10100101.\delay_cnt' using process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+  created $adff cell `$procdff$408' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'10100101.\delay_target' using process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+  created $adff cell `$procdff$411' with positive edge clock and positive level reset.
+Creating register for signal `\processor.\out_valid' using process `\processor.$proc$processor.v:21$69'.
+  created $adff cell `$procdff$414' with positive edge clock and positive level reset.
+Creating register for signal `\processor.\out_packet' using process `\processor.$proc$processor.v:21$69'.
+  created $adff cell `$procdff$417' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\rd_en0' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$420' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\rd_en1' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$423' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\rd_en2' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$426' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\out_data' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$429' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\out_channel' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$432' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\out_valid' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$435' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\state' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$438' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\ptr' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$441' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\next_ptr$func$rr_arbiter.v:91$35.$result' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$444' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\next_ptr$func$rr_arbiter.v:91$35.p' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$447' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\next_ptr$func$rr_arbiter.v:102$36.$result' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$450' with positive edge clock and positive level reset.
+Creating register for signal `\rr_arbiter.\next_ptr$func$rr_arbiter.v:102$36.p' using process `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+  created $adff cell `$procdff$453' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.\rd_data' using process `\channel_fifo.$proc$channel_fifo.v:43$24'.
+  created $adff cell `$procdff$456' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.\rd_ptr' using process `\channel_fifo.$proc$channel_fifo.v:43$24'.
+  created $adff cell `$procdff$459' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.$mem2reg_rd$\mem$channel_fifo.v:48$9_ADDR' using process `\channel_fifo.$proc$channel_fifo.v:43$24'.
+  created $adff cell `$procdff$462' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.$mem2reg_rd$\mem$channel_fifo.v:48$9_DATA' using process `\channel_fifo.$proc$channel_fifo.v:43$24'.
+  created $adff cell `$procdff$465' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.\wr_ptr' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $adff cell `$procdff$468' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.\mem[0]' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $dff cell `$procdff$473' with positive edge clock.
+Creating register for signal `\channel_fifo.\mem[1]' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $dff cell `$procdff$478' with positive edge clock.
+Creating register for signal `\channel_fifo.\mem[2]' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $dff cell `$procdff$483' with positive edge clock.
+Creating register for signal `\channel_fifo.\mem[3]' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $dff cell `$procdff$488' with positive edge clock.
+Creating register for signal `\channel_fifo.$mem2reg_wr$\mem$channel_fifo.v:37$8_ADDR' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $adff cell `$procdff$491' with positive edge clock and positive level reset.
+Creating register for signal `\channel_fifo.$mem2reg_wr$\mem$channel_fifo.v:37$8_DATA' using process `\channel_fifo.$proc$channel_fifo.v:33$14'.
+  created $adff cell `$procdff$494' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'01011100.\data' using process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+  created $adff cell `$procdff$497' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'01011100.\valid' using process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+  created $adff cell `$procdff$500' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'01011100.\lfsr' using process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+  created $adff cell `$procdff$503' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'01011100.\delay_cnt' using process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+  created $adff cell `$procdff$506' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\data_gen\SEED=8'01011100.\delay_target' using process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+  created $adff cell `$procdff$509' with positive edge clock and positive level reset.
+
+7.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+7.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+Removing empty process `$paramod\data_gen\SEED=8'00111110.$proc$data_gen.v:22$94'.
+Found and cleaned up 6 empty switches in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+Removing empty process `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$proc$uart_tx.v:36$82'.
+Found and cleaned up 1 empty switch in `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+Removing empty process `$paramod\data_gen\SEED=8'10100101.$proc$data_gen.v:22$108'.
+Found and cleaned up 1 empty switch in `\processor.$proc$processor.v:21$69'.
+Removing empty process `processor.$proc$processor.v:21$69'.
+Found and cleaned up 4 empty switches in `\rr_arbiter.$proc$rr_arbiter.v:62$41'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.v:62$41'.
+Found and cleaned up 2 empty switches in `\channel_fifo.$proc$channel_fifo.v:43$24'.
+Removing empty process `channel_fifo.$proc$channel_fifo.v:43$24'.
+Found and cleaned up 2 empty switches in `\channel_fifo.$proc$channel_fifo.v:33$14'.
+Removing empty process `channel_fifo.$proc$channel_fifo.v:33$14'.
+Found and cleaned up 1 empty switch in `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+Removing empty process `$paramod\data_gen\SEED=8'01011100.$proc$data_gen.v:22$101'.
+Cleaned up 18 empty switches.
+
+7.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+<suppressed ~5 debug messages>
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~11 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+<suppressed ~5 debug messages>
+Optimizing module processor.
+<suppressed ~2 debug messages>
+Optimizing module rr_arbiter.
+<suppressed ~41 debug messages>
+Optimizing module channel_fifo.
+<suppressed ~13 debug messages>
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+<suppressed ~5 debug messages>
+
+7.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 31 unused cells and 209 unused wires.
+<suppressed ~40 debug messages>
+
+7.5. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\data_gen\SEED=8'00111110...
+Checking module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010...
+Checking module top...
+Checking module $paramod\data_gen\SEED=8'10100101...
+Checking module processor...
+Checking module rr_arbiter...
+Checking module channel_fifo...
+Checking module $paramod\data_gen\SEED=8'01011100...
+Found and reported 0 problems.
+
+7.6. Executing OPT pass (performing simple optimizations).
+
+7.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 55 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 38 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+<suppressed ~51 debug messages>
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 45 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~9 debug messages>
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 42 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 20 cells.
+
+7.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$280: \state -> 1'0
+      Replacing known input bits on port B of cell $procmux$283: \state -> 1'0
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$300.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 1 multiplexer ports.
+<suppressed ~117 debug messages>
+
+7.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+    New ctrl vector for $pmux cell $procmux$130: { $auto$opt_reduce.cc:137:opt_pmux$511 $procmux$190_CMP $procmux$194_CMP }
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+    New ctrl vector for $pmux cell $procmux$280: $procmux$285_CMP
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 2 changes.
+
+7.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 39 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 37 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+<suppressed ~6 debug messages>
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 41 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 2 cells.
+
+7.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 23 unused wires.
+<suppressed ~3 debug messages>
+
+7.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+<suppressed ~1 debug messages>
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~118 debug messages>
+
+7.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+    New ctrl vector for $pmux cell $procmux$158: { $auto$opt_reduce.cc:137:opt_pmux$513 $procmux$134_CMP }
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 1 changes.
+
+7.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 38 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 41 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.6.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~114 debug messages>
+
+7.6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.6.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 38 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 41 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.6.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.6.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.6.23. Finished fast OPT passes. (There is nothing left to do.)
+
+7.7. Executing FSM pass (extract and optimize FSM).
+
+7.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.state.
+
+7.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+  found $adff cell for state register: $procdff$381
+  root of input selection tree: $0\state[1:0]
+  found reset state: 2'00 (from async reset)
+  found ctrl input: $procmux$131_CMP
+  found ctrl input: $procmux$132_CMP
+  found ctrl input: $procmux$133_CMP
+  found ctrl input: $procmux$134_CMP
+  found ctrl input: $lt$uart_tx.v:59$85_Y
+  found ctrl input: $lt$uart_tx.v:74$90_Y
+  found state code: 2'11
+  found state code: 2'10
+  found ctrl input: $logic_and$uart_tx.v:49$84_Y
+  found state code: 2'01
+  found ctrl output: $procmux$131_CMP
+  found ctrl output: $procmux$132_CMP
+  found ctrl output: $procmux$133_CMP
+  found ctrl output: $procmux$134_CMP
+  ctrl inputs: { $lt$uart_tx.v:74$90_Y $lt$uart_tx.v:59$85_Y $logic_and$uart_tx.v:49$84_Y }
+  ctrl outputs: { $procmux$134_CMP $procmux$133_CMP $procmux$132_CMP $procmux$131_CMP $0\state[1:0] }
+  transition:       2'00 3'--0 ->       2'00 6'100000
+  transition:       2'00 3'--1 ->       2'01 6'100001
+  transition:       2'10 3'00- ->       2'11 6'001011
+  transition:       2'10 3'10- ->       2'10 6'001010
+  transition:       2'10 3'-1- ->       2'10 6'001010
+  transition:       2'01 3'-0- ->       2'10 6'010010
+  transition:       2'01 3'-1- ->       2'01 6'010001
+  transition:       2'11 3'-0- ->       2'00 6'000100
+  transition:       2'11 3'-1- ->       2'11 6'000111
+
+7.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$514' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+
+7.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 11 unused cells and 11 unused wires.
+<suppressed ~12 debug messages>
+
+7.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$514' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+  Removing unused output signal $0\state[1:0] [0].
+  Removing unused output signal $0\state[1:0] [1].
+
+7.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$514' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> ---1
+  10 -> --1-
+  01 -> -1--
+  11 -> 1---
+
+7.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$514' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010':
+-------------------------------------
+
+  Information on FSM $fsm$\state$514 (\state):
+
+  Number of input signals:    3
+  Number of output signals:   4
+  Number of state bits:       4
+
+  Input signals:
+    0: $logic_and$uart_tx.v:49$84_Y
+    1: $lt$uart_tx.v:59$85_Y
+    2: $lt$uart_tx.v:74$90_Y
+
+  Output signals:
+    0: $procmux$131_CMP
+    1: $procmux$132_CMP
+    2: $procmux$133_CMP
+    3: $procmux$134_CMP
+
+  State encoding:
+    0:     4'---1  <RESET STATE>
+    1:     4'--1-
+    2:     4'-1--
+    3:     4'1---
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 3'--0   ->     0 4'1000
+      1:     0 3'--1   ->     2 4'1000
+      2:     1 3'10-   ->     1 4'0010
+      3:     1 3'-1-   ->     1 4'0010
+      4:     1 3'00-   ->     3 4'0010
+      5:     2 3'-0-   ->     1 4'0100
+      6:     2 3'-1-   ->     2 4'0100
+      7:     3 3'-0-   ->     0 4'0001
+      8:     3 3'-1-   ->     3 4'0001
+
+-------------------------------------
+
+7.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$514' from module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+
+7.8. Executing OPT pass (performing simple optimizations).
+
+7.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~8 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 46 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 45 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 41 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 1 cells.
+
+7.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~107 debug messages>
+
+7.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 45 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 3 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 41 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 16 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$372 ($adff) from module $paramod\data_gen\SEED=8'00111110 (D = { \lfsr [6:0] $xor$data_gen.v:40$99_Y }, Q = \lfsr).
+Adding EN signal on $procdff$366 ($adff) from module $paramod\data_gen\SEED=8'00111110 (D = \lfsr, Q = \data).
+Adding EN signal on $procdff$378 ($adff) from module $paramod\data_gen\SEED=8'00111110 (D = $add$data_gen.v:38$96_Y, Q = \delay_target).
+Adding EN signal on $procdff$387 ($adff) from module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 (D = $0\busy[0:0], Q = \busy).
+Adding EN signal on $procdff$396 ($adff) from module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 (D = \tx_data, Q = \data_reg).
+Adding EN signal on $procdff$390 ($adff) from module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 (D = $0\clk_cnt[15:0], Q = \clk_cnt).
+Adding EN signal on $procdff$393 ($adff) from module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 (D = $0\bit_idx[2:0], Q = \bit_idx).
+Adding EN signal on $procdff$405 ($adff) from module $paramod\data_gen\SEED=8'10100101 (D = { \lfsr [6:0] $xor$data_gen.v:40$113_Y }, Q = \lfsr).
+Adding EN signal on $procdff$399 ($adff) from module $paramod\data_gen\SEED=8'10100101 (D = \lfsr, Q = \data).
+Adding EN signal on $procdff$411 ($adff) from module $paramod\data_gen\SEED=8'10100101 (D = $add$data_gen.v:38$110_Y, Q = \delay_target).
+Adding EN signal on $procdff$417 ($adff) from module processor (D = { \in_channel \in_data }, Q = \out_packet).
+Adding EN signal on $procdff$432 ($adff) from module rr_arbiter (D = \ptr, Q = \out_channel).
+Adding EN signal on $procdff$429 ($adff) from module rr_arbiter (D = $ternary$rr_arbiter.v:99$65_Y, Q = \out_data).
+Adding EN signal on $procdff$441 ($adff) from module rr_arbiter (D = $0\ptr[1:0], Q = \ptr).
+Adding EN signal on $procdff$483 ($dff) from module channel_fifo (D = \wr_data, Q = \mem[2]).
+Adding EN signal on $procdff$488 ($dff) from module channel_fifo (D = \wr_data, Q = \mem[3]).
+Adding EN signal on $procdff$473 ($dff) from module channel_fifo (D = \wr_data, Q = \mem[0]).
+Adding EN signal on $procdff$478 ($dff) from module channel_fifo (D = \wr_data, Q = \mem[1]).
+Adding EN signal on $procdff$456 ($adff) from module channel_fifo (D = $3$mem2reg_rd$\mem$channel_fifo.v:48$9_DATA[7:0]$33, Q = \rd_data).
+Adding EN signal on $procdff$468 ($adff) from module channel_fifo (D = $add$channel_fifo.v:38$23_Y, Q = \wr_ptr).
+Adding EN signal on $procdff$459 ($adff) from module channel_fifo (D = $add$channel_fifo.v:49$34_Y, Q = \rd_ptr).
+Adding EN signal on $procdff$503 ($adff) from module $paramod\data_gen\SEED=8'01011100 (D = { \lfsr [6:0] $xor$data_gen.v:40$106_Y }, Q = \lfsr).
+Adding EN signal on $procdff$497 ($adff) from module $paramod\data_gen\SEED=8'01011100 (D = \lfsr, Q = \data).
+Adding EN signal on $procdff$509 ($adff) from module $paramod\data_gen\SEED=8'01011100 (D = $add$data_gen.v:38$103_Y, Q = \delay_target).
+
+7.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 30 unused cells and 42 unused wires.
+<suppressed ~37 debug messages>
+
+7.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~3 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+<suppressed ~3 debug messages>
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~59 debug messages>
+
+7.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 55 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 43 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 34 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+<suppressed ~9 debug messages>
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 4 cells.
+
+7.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~2 debug messages>
+
+7.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~59 debug messages>
+
+7.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.8.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 55 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 13 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.8.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.8.23. Finished fast OPT passes. (There is nothing left to do.)
+
+7.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 8 bits (of 16) from port A of cell $paramod\data_gen\SEED=8'00111110.$add$data_gen.v:38$96 ($add).
+Removed top 11 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'00111110.$add$data_gen.v:38$96 ($add).
+Removed top 7 bits (of 16) from port Y of cell $paramod\data_gen\SEED=8'00111110.$add$data_gen.v:38$96 ($add).
+Removed top 15 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'00111110.$add$data_gen.v:42$100 ($add).
+Removed top 7 bits (of 16) from wire $paramod\data_gen\SEED=8'00111110.$add$data_gen.v:38$96_Y.
+Removed top 1 bits (of 2) from port B of cell $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$auto$opt_dff.cc:351:make_patterns_logic$590 ($ne).
+Removed top 1 bits (of 2) from port B of cell $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$auto$opt_dff.cc:351:make_patterns_logic$581 ($ne).
+Removed top 23 bits (of 32) from port B of cell $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.$lt$uart_tx.v:83$92 ($lt).
+Removed top 8 bits (of 16) from port A of cell $paramod\data_gen\SEED=8'10100101.$add$data_gen.v:38$110 ($add).
+Removed top 11 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'10100101.$add$data_gen.v:38$110 ($add).
+Removed top 7 bits (of 16) from port Y of cell $paramod\data_gen\SEED=8'10100101.$add$data_gen.v:38$110 ($add).
+Removed top 15 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'10100101.$add$data_gen.v:42$114 ($add).
+Removed top 7 bits (of 16) from wire $paramod\data_gen\SEED=8'10100101.$add$data_gen.v:38$110_Y.
+Removed top 1 bits (of 2) from port B of cell rr_arbiter.$eq$rr_arbiter.v:84$58 ($eq).
+Removed top 1 bits (of 2) from port B of cell rr_arbiter.$add$rr_arbiter.v:58$60 ($add).
+Removed top 1 bits (of 2) from port B of cell rr_arbiter.$eq$rr_arbiter.v:100$63 ($eq).
+Removed top 1 bits (of 2) from port B of cell rr_arbiter.$add$rr_arbiter.v:58$67 ($add).
+Removed top 1 bits (of 2) from port B of cell channel_fifo.$procmux$298_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell channel_fifo.$procmux$335_CMP0 ($eq).
+Removed top 8 bits (of 16) from port A of cell $paramod\data_gen\SEED=8'01011100.$add$data_gen.v:38$103 ($add).
+Removed top 11 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'01011100.$add$data_gen.v:38$103 ($add).
+Removed top 7 bits (of 16) from port Y of cell $paramod\data_gen\SEED=8'01011100.$add$data_gen.v:38$103 ($add).
+Removed top 15 bits (of 16) from port B of cell $paramod\data_gen\SEED=8'01011100.$add$data_gen.v:42$107 ($add).
+Removed top 7 bits (of 16) from wire $paramod\data_gen\SEED=8'01011100.$add$data_gen.v:38$103_Y.
+
+7.10. Executing PEEPOPT pass (run peephole optimizers).
+
+7.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~3 debug messages>
+
+7.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module $paramod\data_gen\SEED=8'00111110:
+  creating $macc model for $add$data_gen.v:42$100 ($add).
+  creating $macc model for $add$data_gen.v:38$96 ($add).
+  creating $alu model for $macc $add$data_gen.v:38$96.
+  creating $alu model for $macc $add$data_gen.v:42$100.
+  creating $alu model for $ge$data_gen.v:32$95 ($ge): new $alu
+  creating $alu cell for $ge$data_gen.v:32$95: $auto$alumacc.cc:548:replace_alu$644
+  creating $alu cell for $add$data_gen.v:42$100: $auto$alumacc.cc:548:replace_alu$657
+  creating $alu cell for $add$data_gen.v:38$96: $auto$alumacc.cc:548:replace_alu$660
+  created 3 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010:
+  creating $macc model for $add$uart_tx.v:84$93 ($add).
+  creating $macc model for $add$uart_tx.v:75$91 ($add).
+  creating $alu model for $macc $add$uart_tx.v:75$91.
+  creating $alu model for $macc $add$uart_tx.v:84$93.
+  creating $alu model for $lt$uart_tx.v:83$92 ($lt): new $alu
+  creating $alu model for $lt$uart_tx.v:74$90 ($lt): new $alu
+  creating $alu cell for $lt$uart_tx.v:74$90: $auto$alumacc.cc:548:replace_alu$665
+  creating $alu cell for $lt$uart_tx.v:83$92: $auto$alumacc.cc:548:replace_alu$670
+  creating $alu cell for $add$uart_tx.v:84$93: $auto$alumacc.cc:548:replace_alu$675
+  creating $alu cell for $add$uart_tx.v:75$91: $auto$alumacc.cc:548:replace_alu$678
+  created 4 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module top:
+  created 0 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module $paramod\data_gen\SEED=8'10100101:
+  creating $macc model for $add$data_gen.v:42$114 ($add).
+  creating $macc model for $add$data_gen.v:38$110 ($add).
+  creating $alu model for $macc $add$data_gen.v:38$110.
+  creating $alu model for $macc $add$data_gen.v:42$114.
+  creating $alu model for $ge$data_gen.v:32$109 ($ge): new $alu
+  creating $alu cell for $ge$data_gen.v:32$109: $auto$alumacc.cc:548:replace_alu$682
+  creating $alu cell for $add$data_gen.v:42$114: $auto$alumacc.cc:548:replace_alu$695
+  creating $alu cell for $add$data_gen.v:38$110: $auto$alumacc.cc:548:replace_alu$698
+  created 3 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module processor:
+  created 0 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module rr_arbiter:
+  creating $macc model for $add$rr_arbiter.v:58$67 ($add).
+  creating $macc model for $add$rr_arbiter.v:58$60 ($add).
+  creating $alu model for $macc $add$rr_arbiter.v:58$60.
+  creating $alu model for $macc $add$rr_arbiter.v:58$67.
+  creating $alu cell for $add$rr_arbiter.v:58$67: $auto$alumacc.cc:548:replace_alu$701
+  creating $alu cell for $add$rr_arbiter.v:58$60: $auto$alumacc.cc:548:replace_alu$704
+  created 2 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module channel_fifo:
+  creating $macc model for $add$channel_fifo.v:49$34 ($add).
+  creating $macc model for $add$channel_fifo.v:38$23 ($add).
+  creating $alu model for $macc $add$channel_fifo.v:38$23.
+  creating $alu model for $macc $add$channel_fifo.v:49$34.
+  creating $alu cell for $add$channel_fifo.v:49$34: $auto$alumacc.cc:548:replace_alu$707
+  creating $alu cell for $add$channel_fifo.v:38$23: $auto$alumacc.cc:548:replace_alu$710
+  created 2 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module $paramod\data_gen\SEED=8'01011100:
+  creating $macc model for $add$data_gen.v:42$107 ($add).
+  creating $macc model for $add$data_gen.v:38$103 ($add).
+  creating $alu model for $macc $add$data_gen.v:38$103.
+  creating $alu model for $macc $add$data_gen.v:42$107.
+  creating $alu model for $ge$data_gen.v:32$102 ($ge): new $alu
+  creating $alu cell for $ge$data_gen.v:32$102: $auto$alumacc.cc:548:replace_alu$714
+  creating $alu cell for $add$data_gen.v:42$107: $auto$alumacc.cc:548:replace_alu$727
+  creating $alu cell for $add$data_gen.v:38$103: $auto$alumacc.cc:548:replace_alu$730
+  created 3 $alu and 0 $macc cells.
+
+7.13. Executing SHARE pass (SAT-based resource sharing).
+
+7.14. Executing OPT pass (performing simple optimizations).
+
+7.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~6 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 56 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~59 debug messages>
+
+7.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 56 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 9 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 10 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 11 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 12 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 13 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 14 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 15 on $auto$ff.cc:337:slice$566 ($adffe) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 9 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 10 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 11 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 12 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 13 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 14 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 15 on $auto$ff.cc:337:slice$597 ($adffe) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 9 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 10 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 11 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 12 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 13 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 14 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+Setting constant 0-bit at position 15 on $auto$ff.cc:337:slice$639 ($adffe) from module $paramod\data_gen\SEED=8'01011100.
+
+7.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~4 debug messages>
+
+7.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~59 debug messages>
+
+7.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 56 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 42 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 18 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+7.15. Executing MEMORY pass.
+
+7.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+7.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+7.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+7.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+7.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+7.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+7.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+7.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+7.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.17. Executing OPT pass (performing simple optimizations).
+
+7.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+<suppressed ~2 debug messages>
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~10 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+<suppressed ~2 debug messages>
+Optimizing module processor.
+Optimizing module rr_arbiter.
+<suppressed ~7 debug messages>
+Optimizing module channel_fifo.
+<suppressed ~1 debug messages>
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+<suppressed ~2 debug messages>
+
+7.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 50 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 38 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 37 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 31 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 1 cells.
+
+7.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 2 unused cells and 16 unused wires.
+<suppressed ~8 debug messages>
+
+7.17.5. Finished fast OPT passes.
+
+7.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+7.19. Executing OPT pass (performing simple optimizations).
+
+7.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 49 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 37 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 30 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'00111110..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'10100101..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \processor..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \channel_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\data_gen\SEED=8'01011100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~40 debug messages>
+
+7.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\data_gen\SEED=8'00111110.
+  Optimizing cells in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+  Optimizing cells in module \top.
+  Optimizing cells in module $paramod\data_gen\SEED=8'10100101.
+  Optimizing cells in module \processor.
+  Optimizing cells in module \rr_arbiter.
+  Optimizing cells in module \channel_fifo.
+  Optimizing cells in module $paramod\data_gen\SEED=8'01011100.
+Performed a total of 0 changes.
+
+7.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 49 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 2 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 37 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 30 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 17 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.19.6. Executing OPT_SHARE pass.
+
+7.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+
+7.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.19.10. Finished fast OPT passes. (There is nothing left to do.)
+
+7.20. Executing TECHMAP pass (map to technology primitives).
+
+7.20.1. Executing Verilog-2005 frontend: C:\Users\PRAVALIKA GUJJULA\Downloads\oss-cad-suite-windows-x64-20260829\oss-cad-suite\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\Users\PRAVALIKA GUJJULA\Downloads\oss-cad-suite-windows-x64-20260829\oss-cad-suite\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+7.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$3b9c3993bc1f591baf93bebb081d3d6a93cb0c5c\_90_alu for cells of type $alu.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $pmux.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod$175e67c02b86e96b1288b9dc100122520d7240d8\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000010 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using template $paramod$d3871fccd7727ad2eede7aae9f2bfe3ef8275711\_90_alu for cells of type $alu.
+Using template $paramod$78e969f2586efcf3a5b0b0440bcca0db83d5cca2\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using template $paramod$constmap:8876c1e1fa289f4793438d4e34d232728e6a9746$paramod$92adee9538f2381d8e5006822c900eb986d754e8\_90_shift_shiftx for cells of type $shiftx.
+No more expansions possible.
+<suppressed ~1866 debug messages>
+
+7.21. Executing OPT pass (performing simple optimizations).
+
+7.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+<suppressed ~281 debug messages>
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~332 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+<suppressed ~281 debug messages>
+Optimizing module processor.
+Optimizing module rr_arbiter.
+<suppressed ~70 debug messages>
+Optimizing module channel_fifo.
+<suppressed ~61 debug messages>
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+<suppressed ~281 debug messages>
+
+7.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 275 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 254 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 251 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 250 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+<suppressed ~75 debug messages>
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 291 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 268 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 266 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+<suppressed ~75 debug messages>
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 275 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 253 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 249 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 248 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+<suppressed ~81 debug messages>
+Finding identical cells in module `\processor'.
+Computing hashes of 11 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 80 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 74 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~18 debug messages>
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 158 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Computing hashes of 142 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Computing hashes of 141 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+<suppressed ~51 debug messages>
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 275 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 253 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 249 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 248 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+<suppressed ~81 debug messages>
+Removed a total of 127 cells.
+
+7.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 233 unused cells and 1110 unused wires.
+<suppressed ~239 debug messages>
+
+7.21.5. Finished fast OPT passes.
+
+7.22. Executing ABC pass (technology mapping using ABC).
+
+7.22.1. Extracting gate netlist of module `$paramod\data_gen\SEED=8'00111110' to `<abc-temp-dir>/input.blif'..
+
+7.22.1.1. Executed ABC.
+Extracted 158 gates and 190 wires to a netlist network with 31 inputs and 25 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       28
+ABC RESULTS:            ANDNOT cells:        2
+ABC RESULTS:              NAND cells:       10
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        2
+ABC RESULTS:                OR cells:        1
+ABC RESULTS:             ORNOT cells:       17
+ABC RESULTS:              XNOR cells:        4
+ABC RESULTS:               XOR cells:       12
+ABC RESULTS:              ZERO cells:        7
+ABC RESULTS:        internal signals:      134
+ABC RESULTS:           input signals:       31
+ABC RESULTS:          output signals:       25
+Removing temp directory.
+
+7.22.2. Extracting gate netlist of module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010' to `<abc-temp-dir>/input.blif'..
+
+7.22.2.1. Executed ABC.
+Extracted 172 gates and 207 wires to a netlist network with 33 inputs and 29 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.2.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       26
+ABC RESULTS:            ANDNOT cells:        9
+ABC RESULTS:               MUX cells:       10
+ABC RESULTS:              NAND cells:       11
+ABC RESULTS:               NOR cells:        9
+ABC RESULTS:               NOT cells:        1
+ABC RESULTS:                OR cells:        6
+ABC RESULTS:             ORNOT cells:        2
+ABC RESULTS:              XNOR cells:        1
+ABC RESULTS:               XOR cells:        5
+ABC RESULTS:              ZERO cells:        7
+ABC RESULTS:        internal signals:      145
+ABC RESULTS:           input signals:       33
+ABC RESULTS:          output signals:       29
+Removing temp directory.
+
+7.22.3. Extracting gate netlist of module `\top' to `<abc-temp-dir>/input.blif'..
+
+7.22.3.1. Executed ABC.
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+7.22.4. Extracting gate netlist of module `$paramod\data_gen\SEED=8'10100101' to `<abc-temp-dir>/input.blif'..
+
+7.22.4.1. Executed ABC.
+Extracted 157 gates and 188 wires to a netlist network with 30 inputs and 25 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.4.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       28
+ABC RESULTS:            ANDNOT cells:        2
+ABC RESULTS:              NAND cells:       10
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        2
+ABC RESULTS:                OR cells:        1
+ABC RESULTS:             ORNOT cells:       17
+ABC RESULTS:              XNOR cells:        4
+ABC RESULTS:               XOR cells:       12
+ABC RESULTS:              ZERO cells:        7
+ABC RESULTS:        internal signals:      133
+ABC RESULTS:           input signals:       30
+ABC RESULTS:          output signals:       25
+Removing temp directory.
+
+7.22.5. Extracting gate netlist of module `\processor' to `<abc-temp-dir>/input.blif'..
+
+7.22.5.1. Executed ABC.
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+7.22.6. Extracting gate netlist of module `\rr_arbiter' to `<abc-temp-dir>/input.blif'..
+
+7.22.6.1. Executed ABC.
+Extracted 51 gates and 84 wires to a netlist network with 32 inputs and 16 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.6.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       15
+ABC RESULTS:            ANDNOT cells:        3
+ABC RESULTS:               MUX cells:        2
+ABC RESULTS:              NAND cells:       34
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        1
+ABC RESULTS:        internal signals:       36
+ABC RESULTS:           input signals:       32
+ABC RESULTS:          output signals:       16
+Removing temp directory.
+
+7.22.7. Extracting gate netlist of module `\channel_fifo' to `<abc-temp-dir>/input.blif'..
+
+7.22.7.1. Executed ABC.
+Extracted 91 gates and 132 wires to a netlist network with 41 inputs and 22 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.7.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       24
+ABC RESULTS:            ANDNOT cells:        8
+ABC RESULTS:              NAND cells:       40
+ABC RESULTS:               NOR cells:        2
+ABC RESULTS:               NOT cells:        2
+ABC RESULTS:                OR cells:        2
+ABC RESULTS:              XNOR cells:        2
+ABC RESULTS:               XOR cells:        3
+ABC RESULTS:        internal signals:       69
+ABC RESULTS:           input signals:       41
+ABC RESULTS:          output signals:       22
+Removing temp directory.
+
+7.22.8. Extracting gate netlist of module `$paramod\data_gen\SEED=8'01011100' to `<abc-temp-dir>/input.blif'..
+
+7.22.8.1. Executed ABC.
+Extracted 157 gates and 188 wires to a netlist network with 30 inputs and 25 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.22.8.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       28
+ABC RESULTS:            ANDNOT cells:        2
+ABC RESULTS:              NAND cells:       10
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        2
+ABC RESULTS:                OR cells:        1
+ABC RESULTS:             ORNOT cells:       17
+ABC RESULTS:              XNOR cells:        4
+ABC RESULTS:               XOR cells:       12
+ABC RESULTS:              ZERO cells:        7
+ABC RESULTS:        internal signals:      133
+ABC RESULTS:           input signals:       30
+ABC RESULTS:          output signals:       25
+Removing temp directory.
+Removing global temp directory.
+
+7.23. Executing OPT pass (performing simple optimizations).
+
+7.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+
+7.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 117 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 111 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 109 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+<suppressed ~24 debug messages>
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 113 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 107 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 105 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+<suppressed ~24 debug messages>
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 116 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 110 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 108 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+<suppressed ~24 debug messages>
+Finding identical cells in module `\processor'.
+Computing hashes of 11 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 75 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 74 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 129 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 116 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 110 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 108 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+<suppressed ~24 debug messages>
+Removed a total of 33 cells.
+
+7.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$3297 ($_DFF_PP0_) from module $paramod\data_gen\SEED=8'00111110.
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$2603 ($_DFFE_PP0P_) from module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$2070 ($_DFF_PP0_) from module $paramod\data_gen\SEED=8'10100101.
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$899 ($_DFF_PP0_) from module $paramod\data_gen\SEED=8'01011100.
+
+7.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 676 unused wires.
+<suppressed ~7 debug messages>
+
+7.23.5. Rerunning OPT passes. (Removed registers in this run.)
+
+7.23.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\data_gen\SEED=8'00111110.
+<suppressed ~1 debug messages>
+Optimizing module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010.
+<suppressed ~1 debug messages>
+Optimizing module top.
+Optimizing module $paramod\data_gen\SEED=8'10100101.
+<suppressed ~1 debug messages>
+Optimizing module processor.
+Optimizing module rr_arbiter.
+Optimizing module channel_fifo.
+Optimizing module $paramod\data_gen\SEED=8'01011100.
+<suppressed ~1 debug messages>
+
+7.23.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\data_gen\SEED=8'00111110'.
+Computing hashes of 107 cells of `$paramod\data_gen\SEED=8'00111110'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'00111110'.
+Finding identical cells in module `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Computing hashes of 103 cells of `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding duplicate cells in `$paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010'.
+Finding identical cells in module `\top'.
+Computing hashes of 9 cells of `\top'.
+Finding duplicate cells in `\top'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'10100101'.
+Computing hashes of 106 cells of `$paramod\data_gen\SEED=8'10100101'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'10100101'.
+Finding identical cells in module `\processor'.
+Computing hashes of 11 cells of `\processor'.
+Finding duplicate cells in `\processor'.
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 74 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Finding identical cells in module `\channel_fifo'.
+Computing hashes of 129 cells of `\channel_fifo'.
+Finding duplicate cells in `\channel_fifo'.
+Finding identical cells in module `$paramod\data_gen\SEED=8'01011100'.
+Computing hashes of 106 cells of `$paramod\data_gen\SEED=8'01011100'.
+Finding duplicate cells in `$paramod\data_gen\SEED=8'01011100'.
+Removed a total of 0 cells.
+
+7.23.8. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.23.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'00111110..
+Finding unused cells or wires in module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010..
+Finding unused cells or wires in module \top..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'10100101..
+Finding unused cells or wires in module \processor..
+Finding unused cells or wires in module \rr_arbiter..
+Finding unused cells or wires in module \channel_fifo..
+Finding unused cells or wires in module $paramod\data_gen\SEED=8'01011100..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~4 debug messages>
+
+7.23.10. Finished fast OPT passes.
+
+7.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `top'. Setting top module to top.
+
+7.24.1. Analyzing design hierarchy..
+Top module:  \top
+Used module:     $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+Used module:     \processor
+Used module:     \rr_arbiter
+Used module:     \channel_fifo
+Used module:     $paramod\data_gen\SEED=8'00111110
+Used module:     $paramod\data_gen\SEED=8'01011100
+Used module:     $paramod\data_gen\SEED=8'10100101
+
+7.24.2. Analyzing design hierarchy..
+Top module:  \top
+Used module:     $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+Used module:     \processor
+Used module:     \rr_arbiter
+Used module:     \channel_fifo
+Used module:     $paramod\data_gen\SEED=8'00111110
+Used module:     $paramod\data_gen\SEED=8'01011100
+Used module:     $paramod\data_gen\SEED=8'10100101
+Removed 0 unused modules.
+
+7.25. Printing statistics.
+
+=== $paramod\data_gen\SEED=8'00111110 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      148 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      107 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       13   $_DFFE_PP0P_
+        8   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       77 wires
+      128 wire bits
+       10 public wires
+       44 public wire bits
+        6 ports
+       13 port bits
+      103 cells
+        9   $_ANDNOT_
+       25   $_AND_
+       21   $_DFFE_PP0P_
+        3   $_DFF_PP0_
+        2   $_DFF_PP1_
+       10   $_MUX_
+       11   $_NAND_
+        7   $_NOR_
+        1   $_NOT_
+        2   $_ORNOT_
+        6   $_OR_
+        1   $_XNOR_
+        5   $_XOR_
+
+=== top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       31 wires
+       91 wire bits
+       31 public wires
+       91 public wire bits
+        6 ports
+        7 port bits
+        9 submodules
+        1   $paramod\data_gen\SEED=8'00111110
+        1   $paramod\data_gen\SEED=8'01011100
+        1   $paramod\data_gen\SEED=8'10100101
+        1   $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+        3   channel_fifo
+        1   processor
+        1   rr_arbiter
+
+=== $paramod\data_gen\SEED=8'10100101 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      157 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      106 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       11   $_DFFE_PP0P_
+        9   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== processor ===
+
+        +----------Local Count, excluding submodules.
+        | 
+        7 wires
+       24 wire bits
+        7 public wires
+       24 public wire bits
+        7 ports
+       24 port bits
+       11 cells
+       10   $_DFFE_PP0P_
+        1   $_DFF_PP0_
+
+=== rr_arbiter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       72 wires
+      103 wire bits
+       16 public wires
+       46 public wire bits
+       14 ports
+       43 port bits
+       74 cells
+        3   $_ANDNOT_
+       14   $_AND_
+       12   $_DFFE_PP0P_
+        5   $_DFF_PP0_
+        2   $_MUX_
+       34   $_NAND_
+        3   $_NOR_
+        1   $_NOT_
+
+=== channel_fifo ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       86 wires
+      147 wire bits
+       14 public wires
+       60 public wire bits
+        8 ports
+       22 port bits
+      129 cells
+        8   $_ANDNOT_
+       24   $_AND_
+       14   $_DFFE_PP0P_
+       32   $_DFFE_PP_
+       40   $_NAND_
+        2   $_NOR_
+        2   $_NOT_
+        2   $_OR_
+        2   $_XNOR_
+        3   $_XOR_
+
+=== $paramod\data_gen\SEED=8'01011100 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      157 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      106 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       13   $_DFFE_PP0P_
+        7   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      894 top
+      107 $paramod\data_gen\SEED=8'00111110
+      106 $paramod\data_gen\SEED=8'01011100
+      106 $paramod\data_gen\SEED=8'10100101
+      103 $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+      129 channel_fifo
+       11 processor
+       74 rr_arbiter
+
+        +----------Count including submodules.
+        | 
+      658 wires
+     1249 wire bits
+      127 public wires
+      538 public wire bits
+       69 ports
+      186 port bits
+        - memories
+        - memory bits
+        - processes
+      894 cells
+       42   $_ANDNOT_
+      192   $_AND_
+      122   $_DFFE_PP0P_
+       24   $_DFFE_PP1P_
+       96   $_DFFE_PP_
+       39   $_DFF_PP0_
+        2   $_DFF_PP1_
+       12   $_MUX_
+      195   $_NAND_
+       19   $_NOR_
+       14   $_NOT_
+       53   $_ORNOT_
+       15   $_OR_
+       19   $_XNOR_
+       50   $_XOR_
+        9 submodules
+        1   $paramod\data_gen\SEED=8'00111110
+        1   $paramod\data_gen\SEED=8'01011100
+        1   $paramod\data_gen\SEED=8'10100101
+        1   $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+        3   channel_fifo
+        1   processor
+        1   rr_arbiter
+
+7.26. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\data_gen\SEED=8'00111110...
+Checking module $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010...
+Checking module top...
+Checking module $paramod\data_gen\SEED=8'10100101...
+Checking module processor...
+Checking module rr_arbiter...
+Checking module channel_fifo...
+Checking module $paramod\data_gen\SEED=8'01011100...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== $paramod\data_gen\SEED=8'00111110 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      148 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      107 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       13   $_DFFE_PP0P_
+        8   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       77 wires
+      128 wire bits
+       10 public wires
+       44 public wire bits
+        6 ports
+       13 port bits
+      103 cells
+        9   $_ANDNOT_
+       25   $_AND_
+       21   $_DFFE_PP0P_
+        3   $_DFF_PP0_
+        2   $_DFF_PP1_
+       10   $_MUX_
+       11   $_NAND_
+        7   $_NOR_
+        1   $_NOT_
+        2   $_ORNOT_
+        6   $_OR_
+        1   $_XNOR_
+        5   $_XOR_
+
+=== top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       31 wires
+       91 wire bits
+       31 public wires
+       91 public wire bits
+        6 ports
+        7 port bits
+        9 submodules
+        1   $paramod\data_gen\SEED=8'00111110
+        1   $paramod\data_gen\SEED=8'01011100
+        1   $paramod\data_gen\SEED=8'10100101
+        1   $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+        3   channel_fifo
+        1   processor
+        1   rr_arbiter
+
+=== $paramod\data_gen\SEED=8'10100101 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      157 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      106 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       11   $_DFFE_PP0P_
+        9   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== processor ===
+
+        +----------Local Count, excluding submodules.
+        | 
+        7 wires
+       24 wire bits
+        7 public wires
+       24 public wire bits
+        7 ports
+       24 port bits
+       11 cells
+       10   $_DFFE_PP0P_
+        1   $_DFF_PP0_
+
+=== rr_arbiter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       72 wires
+      103 wire bits
+       16 public wires
+       46 public wire bits
+       14 ports
+       43 port bits
+       74 cells
+        3   $_ANDNOT_
+       14   $_AND_
+       12   $_DFFE_PP0P_
+        5   $_DFF_PP0_
+        2   $_MUX_
+       34   $_NAND_
+        3   $_NOR_
+        1   $_NOT_
+
+=== channel_fifo ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       86 wires
+      147 wire bits
+       14 public wires
+       60 public wire bits
+        8 ports
+       22 port bits
+      129 cells
+        8   $_ANDNOT_
+       24   $_AND_
+       14   $_DFFE_PP0P_
+       32   $_DFFE_PP_
+       40   $_NAND_
+        2   $_NOR_
+        2   $_NOT_
+        2   $_OR_
+        2   $_XNOR_
+        3   $_XOR_
+
+=== $paramod\data_gen\SEED=8'01011100 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      157 wire bits
+        7 public wires
+       51 public wire bits
+        4 ports
+       11 port bits
+      106 cells
+        2   $_ANDNOT_
+       27   $_AND_
+       13   $_DFFE_PP0P_
+        7   $_DFFE_PP1P_
+       10   $_DFF_PP0_
+       10   $_NAND_
+        1   $_NOR_
+        2   $_NOT_
+       17   $_ORNOT_
+        1   $_OR_
+        4   $_XNOR_
+       12   $_XOR_
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      894 top
+      107 $paramod\data_gen\SEED=8'00111110
+      106 $paramod\data_gen\SEED=8'01011100
+      106 $paramod\data_gen\SEED=8'10100101
+      103 $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+      129 channel_fifo
+       11 processor
+       74 rr_arbiter
+
+        +----------Count including submodules.
+        | 
+      658 wires
+     1249 wire bits
+      127 public wires
+      538 public wire bits
+       69 ports
+      186 port bits
+        - memories
+        - memory bits
+        - processes
+      894 cells
+       42   $_ANDNOT_
+      192   $_AND_
+      122   $_DFFE_PP0P_
+       24   $_DFFE_PP1P_
+       96   $_DFFE_PP_
+       39   $_DFF_PP0_
+        2   $_DFF_PP1_
+       12   $_MUX_
+      195   $_NAND_
+       19   $_NOR_
+       14   $_NOT_
+       53   $_ORNOT_
+       15   $_OR_
+       19   $_XNOR_
+       50   $_XOR_
+        9 submodules
+        1   $paramod\data_gen\SEED=8'00111110
+        1   $paramod\data_gen\SEED=8'01011100
+        1   $paramod\data_gen\SEED=8'10100101
+        1   $paramod\uart_tx\CLKS_PER_BIT=s32'00000000000000000000000110110010
+        3   channel_fifo
+        1   processor
+        1   rr_arbiter
+
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: 5eab673c37
+Yosys 0.68+136 (git sha1 c30457480-dirty, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 15.2.1)
+Time spent: 2% 29x opt_expr (0 sec), 2% 23x opt_clean (0 sec), ...
